@@ -42,7 +42,8 @@ hddfs/
 - **하위 요소는 `__` 또는 `_` 조합**: `.prd_basic_box .prd_img`, `.brand_section > ul > li`
 - **상태 클래스 분리**: `.active`, `.dn`, `.disabled` 등 UI 상태별 관리
 - 네이밍은 모두 소문자 + 언더스코어로 일관성 유지
-
+- 기기 간 반응형 최적화를 위하여, 레이아웃은 flex, grid, max-width, gap 등의 속성을 활용하여 적용
+ 
 ---
 
 ## ⚙️ JavaScript 인터랙션 개요
@@ -61,6 +62,34 @@ hddfs/
   `Swiper.js`로 구성한 `.layer_sort_slide` 탭 전환 → 해당 ul 뷰 토글
 
 > 모든 로직은 공통 JS 파일로 분리하여, 해당 요소가 없는 경우에도 오류 없이 동작합니다.
+
+---
+
+## ⚙️ JavaScript 인터랙션 개요
+- 본 과제는 모바일 기준 시안만 제공되었기 때문에, 모바일 뷰를 중심으로 제작하였습니다.
+- 기기 간 반응형 최적화를 위하여, 레이아웃은 flex, grid, max-width, gap 등의 속성을 활용하여 적용
+- 향후 반응형 확장이 필요한 경우에는 모바일 퍼스트 방식으로 구현할 계획입니다.
+
+```
+/* 기본: 모바일 기준 */
+body {
+  font-size: 14px;
+}
+
+/* 태블릿 대응 (768px 이상) */
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* 데스크탑 대응 (1024px 이상) */
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+}
+```
 
 ---
 
