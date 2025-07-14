@@ -1,13 +1,15 @@
 # 🛍️ HDDFS 프로모션 페이지 퍼블리셔 과제
 
+
 브랜드 별 사은행사, 기획전, 세일 등 모바일 이벤트 페이지 퍼블리싱
 
-메인 비주얼, 브랜드 탭, 상품 리스트, 장바구니레이어 인터랙션까지  
-**HTML, CSS, JavaScript만으로 구현한 페이지**입니다.
+HTML, CSS, JavaScipt 만으로 구현
+
 ---
 
 ## 📂 프로젝트 구성
 
+```
 hddfs/
 ├── assets/
 │ └── images/ # 각종 아이콘 및 제품 이미지
@@ -20,6 +22,7 @@ hddfs/
 │ └── event_templateN.js # 각 템플릿별 개별 스크립트 (필요 시)
 ├── event_template1.html ~
 └── README.md
+```
 
 ---
 
@@ -65,4 +68,6 @@ hddfs/
 
 별도의 빌드 툴 없이 HTML/CSS/JS로 구성된 정적 페이지입니다.
 
-# event_template1.html ~  event_template6.html 파일을 더블 클릭 또는 Live Server 실행
+### event_template1.html ~  event_template6.html 파일을 더블 클릭 또는 Live Server 실행
+
+---
