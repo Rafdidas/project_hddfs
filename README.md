@@ -1,54 +1,68 @@
-🧱 HTML 구조 설계의 핵심 고려 사항
-시맨틱 태그(<header>, <main>, <section>, <footer>)를 활용하여 구조적 의미를 명확히 구분했습니다.
+# 🛍️ HDDFS 프로모션 페이지 퍼블리셔 과제
 
-기능별 섹션을 블록 단위로 구성하여 유지보수성과 재사용성을 고려했습니다.
+브랜드 별 사은행사, 기획전, 세일 등 모바일 이벤트 페이지 퍼블리싱
 
-접근성을 높이기 위해 alt 텍스트, aria 속성 등을 고려하였고, 인터랙션 요소는 모두 <button> 또는 <a> 태그로 구현했습니다.
+메인 비주얼, 브랜드 탭, 상품 리스트, 장바구니레이어 인터랙션까지  
+**HTML, CSS, JavaScript만으로 구현한 페이지**입니다.
+---
 
-BO에서 설정하는 배경색, 텍스트색 등을 동적으로 반영하기 위해 data- 속성을 활용했습니다. (data-bg, data-title-color 등)
+## 📂 프로젝트 구성
 
-🎨 CSS 네이밍 규칙
-블록 중심 구조로 구성하며, 의미 기반 네이밍을 적용했습니다.
-예: .main_visual, .brand_section, .tab_prd, .qty_box, .cart_alert
+hddfs/
+├── assets/
+│ └── images/ # 각종 아이콘 및 제품 이미지
+├── css/
+│ ├── global.css # 공통 스타일
+│ ├── header.css, footer.css
+│ └── event_templateN.css # 각 템플릿별 스타일
+├── js/
+│ ├── common.js # 공통 인터랙션 스크립트
+│ └── event_templateN.js # 각 템플릿별 개별 스크립트 (필요 시)
+├── event_template1.html ~
+└── README.md
 
-하위 요소는 _ 또는 __ 조합으로 연결하여 구조를 명확히 구분했습니다.
-예: .prd_basic_box .prd_img, .prd_basic_box .prd_name
+---
 
-상태 클래스는 .active, .dn, .disabled 등 별도로 분리해 UI 상태를 쉽게 제어할 수 있도록 했습니다.
+## 🧱 HTML 구조 설계의 핵심 고려 사항
 
-전체 소문자 + 언더스코어 스타일로 일관된 클래스명을 유지하여 가독성과 협업 효율성을 높였습니다.
+- 시맨틱 태그(`header`, `main`, `section`, `footer`) 활용
+- 기능별 섹션 구조 분리 (메인 비주얼, 브랜드 탭, 상품 영역 등)
+- BO 설정값을 반영하기 위해 `data-bg`, `data-title-color` 등 `data-*` 속성 사용
+- 레이어 팝업, 탭 콘텐츠 등 구조적 의미에 맞는 마크업 적용
+- 접근성을 고려한 버튼 구조와 alt 속성 제공
 
-⚙️ Javascript 인터랙션 개요
-탭 UI
+---
 
-.tab_prd li > a 클릭 시 해당 탭 콘텐츠 .tabcnt_prdN 노출
+## 🎨 CSS 네이밍 규칙
 
-클릭한 탭에 .active 클래스 추가
+- **기능 단위 클래스 분리**: `.main_visual`, `.tab_prd`, `.cart_alert` 등
+- **하위 요소는 `__` 또는 `_` 조합**: `.prd_basic_box .prd_img`, `.brand_section > ul > li`
+- **상태 클래스 분리**: `.active`, `.dn`, `.disabled` 등 UI 상태별 관리
+- 네이밍은 모두 소문자 + 언더스코어로 일관성 유지
 
-스크롤 연동 탭
+---
 
-.main_section_tab a 클릭 시 앵커 이동
+## ⚙️ JavaScript 인터랙션 개요
 
-스크롤 위치에 따라 해당 탭 자동 활성화
+- **탭 UI**  
+  `.tab_prd li > a` 클릭 시 `.tabcnt_prdN` 영역 show/hide 및 active 클래스 토글  
+- **스크롤 탭 자동 활성화**  
+  `.main_section_tab` 앵커 클릭 시 smooth scroll + 현재 위치 기반 자동 활성화 처리
+- **레이어 팝업 열기/닫기**  
+  `.layer_wrapper`는 `transform: translateY()`로 자연스럽게 올라오도록 구현
+- **장바구니 수량 조절**  
+  `.qty_box` 내 수량 증감 버튼 (`최소값 0`)
+- **장바구니 담기 알림**  
+  `.set_cart_btn` 클릭 시 `.cart_alert` 2초간 노출
+- **카테고리 탭 슬라이드**  
+  `Swiper.js`로 구성한 `.layer_sort_slide` 탭 전환 → 해당 ul 뷰 토글
 
-모달 레이어
+> 모든 로직은 공통 JS 파일로 분리하여, 해당 요소가 없는 경우에도 오류 없이 동작합니다.
 
-.layer_wrapper는 transform: translateY() 기반 슬라이드 애니메이션
+---
 
-iOS에서도 스크롤 차단을 위해 body에 .view_nav 클래스 적용 + position: fixed 방식 활용
+## 📦 설치 및 실행 방법
 
-카테고리 슬라이드
+별도의 빌드 툴 없이 HTML/CSS/JS로 구성된 정적 페이지입니다.
 
-Swiper를 사용한 .layer_sort_slide 구성
-
-클릭 시 해당 index로 이동 및 .active 클래스 부여
-
-장바구니 알럿
-
-.set_cart_btn 클릭 시 .cart_alert 일시 노출 → 2초 뒤 자동 사라짐
-
-수량 조절
-
-.qty_box의 + / – 버튼 클릭 시 input 수량 증감 (최소값 0 제한)
-
-모든 이벤트 로직은 DOMContentLoaded 내에서 요소 존재 여부 확인 후 실행하여 페이지별 공통 적용을 안전하게 처리했습니다.
+# event_template1.html ~  event_template6.html 파일을 더블 클릭 또는 Live Server 실행
